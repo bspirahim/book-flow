@@ -16,7 +16,7 @@ const AllBookPage = () => {
 
     }, [])
     return (
-        <div className='max-w-screen-lg mx-auto my-16'>
+        <div className='max-w-screen-lg mx-auto my-12'>
 
             <div className='grid md:grid-cols-4 gap-10'>
                 {
