@@ -5,7 +5,7 @@ import React from 'react';
 import { FaRegUser } from 'react-icons/fa';
 
 const Navbar = () => {
-    const {data: session } = useSession()
+    const {data: session } = useSession();
     return (
         <div className='bg-primary shadow-xl drop-shadow-md'>
             <div className="navbar z-10 text-white max-w-screen-lg mx-auto">
@@ -18,6 +18,7 @@ const Navbar = () => {
                             <Link className='mx-2' href='/'>Home</Link>
                             <Link className='mx-2' href='allBook'>All Book</Link>
                             <Link className='mx-2' href='addBook'>Add Book</Link>
+                            <Link className='mx-2' href='dashBoard'>Dashboard</Link>
                         </ul>
                     </div>
                     <a className="text-xl font-bold cursor-pointer">BookFlow</a>
@@ -27,6 +28,8 @@ const Navbar = () => {
                         <Link className='mx-2' href='/'>Home</Link>
                         <Link className='mx-2' href='allBook'>All Book</Link>
                         <Link className='mx-2' href='addBook'>Add Book</Link>
+                        <Link className='mx-2' href='dashBoard'>Dashboard</Link>
+
                     </ul>
                 </div>
                 <div className="navbar-end space-x-2">

@@ -1,22 +1,57 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 
 const AddBookPage = () => {
+    const [error, setError] = useState();
+
+    const handleAddBook = async (e) => {
+        e.preventDefault()
+
+        const form = e.target;
+        const bookName = form.bookname.value;
+        const author = form.author.value;
+        const category = form.category.value;
+        const price = form.price.value;
+        const quantity = form.quantity.value;
+        const details = form.details.value;
+        const rating = form.rating.value;
+        const photo = form.photo.value;
+
+        const addBook = {bookName,author, category, price, quantity, details, rating, photo }
+
+        console.log(addBook);
+
+        try {
+            const res = await fetch('/api/addBook', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(addBook)
+            })
+            if (res.status === 500) {
+                setError('Something went wrong');
+            } if (res.status === 200) {
+                setError('');
+                alert('Successfully added Book')
+                form.reset();
+            }
+        } catch (error) {
+            setError('Error, try again');
+            console.log(error);
+        }
+
+    }
     return (
         <div className='my-12 mb-20 container mx-auto w-3/4'>
             <h1 className='text-center text-3xl mb-7 font-bold'>Add Book</h1>
-            <form>
+            <form onSubmit={handleAddBook}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Book No</span>
-                        </label>
-                        <input type="text" defaultValue='' name='id' className="input input-bordered" required />
-                    </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Book Name</span>
                         </label>
-                        <input type="text" defaultValue='' name='name' className="input input-bordered" required />
+                        <input type="text" defaultValue='' name='bookname' className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -28,7 +63,7 @@ const AddBookPage = () => {
                         <label className="label">
                             <span className="label-text">Book Quantity</span>
                         </label>
-                        <input type="text" name='title' className="input input-bordered" required />
+                        <input type="text" name='quantity' className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -50,12 +85,7 @@ const AddBookPage = () => {
                         </label>
                         <input type="text" name='price' className="input input-bordered" required />
                     </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Available Quantity</span>
-                        </label>
-                        <input type="text" name='quantity' className="input input-bordered" required />
-                    </div>
+                   
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Rating</span>
@@ -77,6 +107,7 @@ const AddBookPage = () => {
                 </div>
                 <div className="form-control mt-6">
                     <input type="submit" className='btn btn-primary' value="Add Book" />
+                    <p className='text-red-600'>{error && error}</p>
                 </div>
             </form>
         </div>
