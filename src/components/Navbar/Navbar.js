@@ -1,7 +1,11 @@
+'use client';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
+import { FaRegUser } from 'react-icons/fa';
 
 const Navbar = () => {
+    const {data: session } = useSession()
     return (
         <div className='bg-primary shadow-xl drop-shadow-md'>
             <div className="navbar z-10 text-white max-w-screen-lg mx-auto">
@@ -25,9 +29,17 @@ const Navbar = () => {
                         <Link className='mx-2' href='addBook'>Add Book</Link>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <Link href='login'>Login</Link>/
-                    <Link href='register'>Register</Link>
+                <div className="navbar-end space-x-2">
+                    {!session ? (
+                        <>
+                            <Link className='border-2 px-2 py-1 rounded-md' href='login'>Login</Link>
+                        </>
+                    ) : (
+                        <>
+                            <div className='border-2 p-2 rounded-full' ><FaRegUser className='text-xl' /></div>
+                            <button onClick={() => { signOut() }} className='border-2 px-2 py-1 rounded-md'>Log Out</button>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
