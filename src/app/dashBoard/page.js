@@ -9,9 +9,9 @@ const Dashboard = () => {
         redirect('/')
     }
     return (
-        <div>
-            <h1 className='font-bold text-2xl text-center my-5'>Welcome to {session?.user.name}</h1>   
-        </div>
+        <main>     
+            Dashboard main
+        </main>
     );
 };
 
