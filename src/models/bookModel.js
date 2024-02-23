@@ -4,6 +4,11 @@ const { Schema } = mongoose;
 
 const bookSchema = new Schema(
     {
+        seller: {
+            type: String,
+            unique: true,
+            required: true,
+        },
         bookName: {
             type: String,
             unique: true,
@@ -34,9 +39,7 @@ const bookSchema = new Schema(
         },
         photo: {
             type: String,
-            required: true,
-
-        },
+          },
         details: {
             type: String,
             required: true,

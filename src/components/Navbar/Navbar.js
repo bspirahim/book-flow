@@ -16,8 +16,8 @@ const Navbar = () => {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <Link className='mx-2' href='/'>Home</Link>
-                            <Link className='mx-2' href='allBook'>All Book</Link>
-                            <Link className='mx-2' href='addBook'>Add Book</Link>
+                            <Link className='mx-2' href='/allBook'>All Book</Link>
+                            <Link className='mx-2' href='/addBook'>Add Book</Link>
                             <Link className='mx-2' href='dashBoard'>Dashboard</Link>
                         </ul>
                     </div>
@@ -26,16 +26,16 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-md">
                         <Link className='mx-2' href='/'>Home</Link>
-                        <Link className='mx-2' href='allBook'>All Book</Link>
-                        <Link className='mx-2' href='addBook'>Add Book</Link>
-                        <Link className='mx-2' href='dashBoard'>Dashboard</Link>
+                        <Link className='mx-2' href='/allBook'>All Book</Link>
+                        <Link className='mx-2' href='/addBook'>Add Book</Link>
+                        <Link className='mx-2' href='/dashBoard'>Dashboard</Link>
 
                     </ul>
                 </div>
                 <div className="navbar-end space-x-2">
                     {!session ? (
                         <>
-                            <Link className='border-2 px-2 py-1 rounded-md' href='login'>Login</Link>
+                            <Link className='border-2 px-2 py-1 rounded-md' href='/login'>Login</Link>
                         </>
                     ) : (
                         <>

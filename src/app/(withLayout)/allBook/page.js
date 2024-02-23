@@ -4,15 +4,14 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Rating from 'react-rating';
-
 import { FaRegStar, FaStar } from 'react-icons/fa';
 
 const AllBookPage = () => {
-    const [book, setBook] = useState([])
+    const [books, setBooks] = useState([])
     useEffect(() => {
-        fetch('Category.json')
+        fetch('/api/books')
             .then(res => res.json())
-            .then(data => setBook(data))
+            .then(data => setBooks(data))
 
     }, [])
     return (
@@ -20,19 +19,19 @@ const AllBookPage = () => {
 
             <div className='grid md:grid-cols-4 gap-10'>
                 {
-                    book.map(bk =>
+                    books.map(book =>
                         <>
                         <div className="card w-full bg-base-100 drop-shadow-2xl shadow-inner shadow-gray-400">
                             <figure className="shadow-inner shadow-gray-400 ">
-                                <Image width={100} height={100}  src={bk?.image} alt="card image" className="object-cover h-44 w-full" />
+                                <Image width={100} height={100}  src={book?.photo} alt="card image" className="object-cover h-44 w-full" />
                             </figure>
                             <div className="card-body p-0 items-center text-center">
-                                <h2 className="card-title font-bold mt-4">{bk?.category}</h2>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                                <p className='font-bold'>$</p>
+                                <h2 className="card-title font-bold mt-4">{book?.bookName}</h2>
+                                <p>{book?.author}</p>
+                                <p className='font-bold'>${book.price}</p>
                                 <div>
                                     <Rating
-                                        placeholderRating={5}
+                                        placeholderRating={book?.rating}
                                         emptySymbol={<FaRegStar></FaRegStar>}
                                         placeholderSymbol={<FaStar className='text-yellow-500'></FaStar>}
                                         fullSymbol={<FaStar></FaStar>}

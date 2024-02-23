@@ -1,13 +1,16 @@
 'use client';
+import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 
 const AddBookPage = () => {
     const [error, setError] = useState();
+    const { data: session } = useSession();
 
     const handleAddBook = async (e) => {
         e.preventDefault()
 
         const form = e.target;
+        const sellerEmail = form.sellerEmail.value;
         const bookName = form.bookname.value;
         const author = form.author.value;
         const category = form.category.value;
@@ -17,12 +20,12 @@ const AddBookPage = () => {
         const rating = form.rating.value;
         const photo = form.photo.value;
 
-        const addBook = {bookName,author, category, price, quantity, details, rating, photo }
+        const addBook = { bookName, author, category, price, quantity, details, rating, photo, sellerEmail }
 
         console.log(addBook);
 
         try {
-            const res = await fetch('/api/addBook', {
+            const res = await fetch('/api/books', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,6 +50,12 @@ const AddBookPage = () => {
             <h1 className='text-center text-3xl mb-7 font-bold'>Add Book</h1>
             <form onSubmit={handleAddBook}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Seller Email</span>
+                        </label>
+                        <input type="text" defaultValue={session?.user?.email} name='sellerEmail' className="input input-bordered" required />
+                    </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Book Name</span>
@@ -85,7 +94,7 @@ const AddBookPage = () => {
                         </label>
                         <input type="text" name='price' className="input input-bordered" required />
                     </div>
-                   
+
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Rating</span>
@@ -98,16 +107,16 @@ const AddBookPage = () => {
                         </label>
                         <input type="text" name='photo' className="input input-bordered" required />
                     </div>
+                </div>
                     <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Detail Description</span>
-                    </label>
-                    <textarea type="text" name='details' className="input input-bordered" required />
-                </div>
-                </div>
+                        <label className="label">
+                            <span className="label-text">Detail Description</span>
+                        </label>
+                        <textarea type="text" name='details' className="input input-bordered" required />
+                    </div>
                 <div className="form-control mt-6">
                     <input type="submit" className='btn btn-primary' value="Add Book" />
-                    <p className='text-red-600'>{error && error}</p>
+                    <p className='text-red-600 my-2'>{error && error}</p>
                 </div>
             </form>
         </div>
