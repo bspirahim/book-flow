@@ -46,15 +46,15 @@ const AddBookPage = () => {
 
     }
     return (
-        <div className='my-12 mb-20 container mx-auto w-3/4'>
-            <h1 className='text-center text-3xl mb-7 font-bold'>Add Book</h1>
+        <div className='mb-5 mx-auto w-full'>
+            <h1 className='text-center text-3xl my-5 font-bold'>Add Book</h1>
             <form onSubmit={handleAddBook}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Seller Email</span>
                         </label>
-                        <input type="text" defaultValue={session?.user?.email} name='sellerEmail' className="input input-bordered" required />
+                        <input type="text" defaultValue={session?.user?.email} name='sellerEmail' readOnly className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -79,7 +79,7 @@ const AddBookPage = () => {
                             <span className="label-text">Category</span>
                         </label>
                         <select name='category' className="input input-bordered" required>
-                            <option value=""></option>
+                            <option value="" >Select Category</option>
                             <option value="music">Arts & Music</option>
                             <option value="biography">Biography</option>
                             <option value="tech">Computer & Tech</option>
