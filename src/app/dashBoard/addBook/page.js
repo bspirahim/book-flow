@@ -10,7 +10,7 @@ const AddBookPage = () => {
         e.preventDefault()
 
         const form = e.target;
-        const sellerEmail = form.sellerEmail.value;
+        const email = form.email.value;
         const bookName = form.bookname.value;
         const author = form.author.value;
         const category = form.category.value;
@@ -20,7 +20,7 @@ const AddBookPage = () => {
         const rating = form.rating.value;
         const photo = form.photo.value;
 
-        const addBook = { bookName, author, category, price, quantity, details, rating, photo, sellerEmail }
+        const addBook = { bookName, author, category, price, quantity, details, rating, photo, email }
 
         console.log(addBook);
 
@@ -54,7 +54,7 @@ const AddBookPage = () => {
                         <label className="label">
                             <span className="label-text">Seller Email</span>
                         </label>
-                        <input type="text" defaultValue={session?.user?.email} name='sellerEmail' readOnly className="input input-bordered" required />
+                        <input type="email" defaultValue={session?.user?.email} name='email' readOnly className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -115,7 +115,7 @@ const AddBookPage = () => {
                         <textarea type="text" name='details' className="input input-bordered" required />
                     </div>
                 <div className="form-control mt-6">
-                    <input type="submit" className='btn btn-primary' value="Add Book" />
+                    <input type="submit" className='btn text-lg text-white btn-primary' value="Submit" />
                     <p className='text-red-600 my-2'>{error && error}</p>
                 </div>
             </form>

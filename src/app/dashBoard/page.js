@@ -10,7 +10,7 @@ const Dashboard = () => {
     }
     return (
         <main>     
-            Dashboard main
+        <p className='text-center text-2xl'> Welcome to {session?.user.name}</p>
         </main>
     );
 };

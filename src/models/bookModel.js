@@ -4,11 +4,7 @@ const { Schema } = mongoose;
 
 const bookSchema = new Schema(
     {
-        seller: {
-            type: String,
-            unique: true,
-            required: true,
-        },
+
         bookName: {
             type: String,
             unique: true,
@@ -16,7 +12,7 @@ const bookSchema = new Schema(
         },
         author: {
             type: String,
-            required:true,
+            required: true,
 
         },
         quantity: {
@@ -39,17 +35,22 @@ const bookSchema = new Schema(
         },
         photo: {
             type: String,
-          },
+        },
         details: {
             type: String,
             required: true,
 
         },
-       
+        email: {
+            type: String,
+            unique: true,
+            required: true,
+        },
+
     },
     { timeStamps: true }
 );
 
 const Book = mongoose.models.books || mongoose.model("books", bookSchema);
 
-export default  Book;
+export default Book;
