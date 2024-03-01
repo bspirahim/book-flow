@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const Categories = () => {
@@ -16,7 +17,8 @@ const Categories = () => {
             <h1>Categories</h1>
             <ul className='flex space-x-2'>
                 {categories.map(category => (
-                    <li className='border-2 border-primary p-1 cursor-pointer hover:bg-primary duration-300 hover:text-white rounded-md' key="{category.category_id}">{category.categoryName}</li>
+                    <Link
+                     href={`/category/${category.category_id}`} className='border-2 border-primary p-1 cursor-pointer hover:bg-primary duration-300 hover:text-white rounded-md' key="{category.category_id}">{category.categoryName}</Link>
                 ))}
             </ul>
         </div>
