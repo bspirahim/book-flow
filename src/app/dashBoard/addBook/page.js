@@ -13,6 +13,7 @@ const AddBookPage = () => {
         const email = form.email.value;
         const bookName = form.bookname.value;
         const author = form.author.value;
+        const title = form.title.value;
         const category = form.category.value;
         const price = form.price.value;
         const quantity = form.quantity.value;
@@ -20,7 +21,7 @@ const AddBookPage = () => {
         const rating = form.rating.value;
         const photo = form.photo.value;
 
-        const addBook = { bookName, author, category, price, quantity, details, rating, photo, email }
+        const addBook = { bookName, author, title, category, price, quantity, details, rating, photo, email }
 
         console.log(addBook);
 
@@ -70,6 +71,12 @@ const AddBookPage = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
+                            <span className="label-text">Title</span>
+                        </label>
+                        <input type="text" name='title' className="input input-bordered" required />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
                             <span className="label-text">Book Quantity</span>
                         </label>
                         <input type="text" name='quantity' className="input input-bordered" required />
@@ -84,8 +91,8 @@ const AddBookPage = () => {
                             <option value="biography">Biography</option>
                             <option value="tech">Computer & Tech</option>
                             <option value="history">History</option>
-                            <option value="barbie">Health and Fitness</option>
-                            <option value="Romance">Romance</option>
+                            <option value="health">Health and Fitness</option>
+                            <option value="romance">Romance</option>
                         </select>
                     </div>
                     <div className="form-control">
@@ -107,13 +114,13 @@ const AddBookPage = () => {
                         </label>
                         <input type="text" name='photo' className="input input-bordered" required />
                     </div>
-                </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Detail Description</span>
                         </label>
                         <textarea type="text" name='details' className="input input-bordered" required />
                     </div>
+                </div>
                 <div className="form-control mt-6">
                     <input type="submit" className='btn text-lg text-white btn-primary' value="Submit" />
                     <p className='text-red-600 my-2'>{error && error}</p>
