@@ -10,8 +10,8 @@ export default function Home() {
       <Banner></Banner>
       <About></About>
       <Products></Products>
-      <Review></Review>
       <Categories></Categories>
+      <Review></Review>
     </main>
   );
 }
