@@ -3,12 +3,12 @@ import connect from "@/utils/db";
 import Book from '@/models/bookModel'
 
 
-export const GET = async (request) => {
-    const category = 'categoryName'
+export const POST = async (request) => {
+    /* receve data from frontend category page*/
+    const {category} = await request.json();
     try {
         await connect();
         const books = await Book.find({
-            "_id": 0,
             "category": category
           });
         return new NextResponse(JSON.stringify(books), { status: 200 });
